@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wiseverse — Personalized Digital Gifts</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --card:#12121a;
+      --soft:#1a1a26;
+      --text:#f5f5f7;
+      --muted:#b7b7c9;
+      --accent:#8b5cf6;
+      --accent2:#c084fc;
+      --line:rgba(255,255,255,.08);
+      --grad:linear-gradient(135deg,#7c3aed,#c084fc);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Inter',sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(1180px,92%);
+      margin:auto;
+    }
+
+    section{
+      padding:110px 0;
+      position:relative;
+    }
+
+    .blur{
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:rgba(139,92,246,.15);
+      filter:blur(90px);
+      z-index:-1;
+    }
+
+    .blur.one{
+      top:-100px;
+      left:-120px;
+    }
+
+    .blur.two{
+      right:-120px;
+      top:40%;
+    }
+
+    /* NAV */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:999;
+      backdrop-filter:blur(18px);
+      background:rgba(11,11,16,.65);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-wrap{
+      height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .logo{
+      font-size:1.4rem;
+      font-weight:700;
+      letter-spacing:.5px;
+    }
+
+    .logo span{
+      background:var(--grad);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:32px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .nav-btn{
+      padding:13px 20px;
+      border-radius:999px;
+      background:var(--grad);
+      font-weight:600;
+      font-size:.92rem;
+      box-shadow:0 10px 40px rgba(139,92,246,.35);
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      color:#c4b5fd;
+      font-size:.85rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:20px;
+    }
+
+    h1{
+      font-size:5rem;
+      line-height:1;
+      font-family:'Cormorant Garamond',serif;
+      margin-bottom:24px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:1.1rem;
+      line-height:1.8;
+      max-width:620px;
+    }
+
+    .hero-actions{
+      margin-top:36px;
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 26px;
+      border-radius:999px;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .btn-primary{
+      background:var(--grad);
+      box-shadow:0 14px 50px rgba(139,92,246,.35);
+    }
+
+    .btn-secondary{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+
+    /* HERO VISUAL */
+
+    .phone-wrap{
+      position:relative;
+      display:flex;
+      justify-content:center;
+    }
+
+    .phone{
+      width:320px;
+      height:650px;
+      background:#111;
+      border-radius:42px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 30px 80px rgba(0,0,0,.55);
+      animation:float 5s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-18px);}
+      100%{transform:translateY(0px);}
+    }
+
+    .screen{
+      width:100%;
+      height:100%;
+      border-radius:30px;
+      overflow:hidden;
+      background:
+              linear-gradient(to bottom right,#fff7f8,#f6ebff);
+      position:relative;
+      padding:28px;
+      color:#222;
+    }
+
+    .gift-badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#fff;
+      font-size:.8rem;
+      margin-bottom:24px;
+      box-shadow:0 6px 20px rgba(0,0,0,.08);
+    }
+
+    .screen h2{
+      font-size:2.3rem;
+      font-family:'Cormorant Garamond',serif;
+      margin-bottom:16px;
+    }
+
+    .screen p{
+      color:#555;
+      line-height:1.7;
+    }
+
+    .lock{
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      background:#fff;
+      margin-top:40px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2rem;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+
+    /* SECTION TITLES */
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h3{
+      font-size:3rem;
+      font-family:'Cormorant Garamond',serif;
+      margin-bottom:18px;
+    }
+
+    .section-title p{
+      color:var(--muted);
+      max-width:760px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    /* EDITIONS */
+
+    .editions{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:26px;
+    }
+
+    .edition-card{
+      background:linear-gradient(180deg,#171722,#101018);
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      transition:.4s;
+      position:relative;
+    }
+
+    .edition-card:hover{
+      transform:translateY(-10px);
+      border-color:rgba(192,132,252,.45);
+    }
+
+    .edition-image{
+      height:250px;
+      position:relative;
+      overflow:hidden;
+      background:
+              radial-gradient(circle at top right,#c084fc55,transparent 45%),
+              linear-gradient(135deg,#201433,#0f0f18);
+    }
+
+    .edition-image::before{
+      content:'';
+      position:absolute;
+      inset:20px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mockup{
+      position:absolute;
+      inset:40px;
+      border-radius:24px;
+      background:#fff;
+      color:#222;
+      padding:24px;
+      transform:rotate(-4deg);
+      box-shadow:0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .mockup h4{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.8rem;
+      margin-bottom:12px;
+    }
+
+    .edition-content{
+      padding:28px;
+    }
+
+    .tag{
+      display:inline-block;
+      font-size:.72rem;
+      letter-spacing:1px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(139,92,246,.15);
+      color:#d8b4fe;
+      margin-bottom:18px;
+    }
+
+    .edition-content h4{
+      font-size:1.5rem;
+      margin-bottom:14px;
+    }
+
+    .edition-content p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:.95rem;
+      margin-bottom:22px;
+    }
+
+    .price{
+      font-size:1.15rem;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    .coming{
+      color:#d8b4fe;
+      font-weight:600;
+    }
+
+    /* EXPERIENCE */
+
+    .experience-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:28px;
+    }
+
+    .exp-card{
+      padding:34px;
+      border-radius:28px;
+      background:linear-gradient(180deg,#171722,#101018);
+      border:1px solid var(--line);
+    }
+
+    .exp-icon{
+      width:68px;
+      height:68px;
+      border-radius:20px;
+      background:rgba(139,92,246,.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.5rem;
+      margin-bottom:24px;
+    }
+
+    .exp-card h4{
+      font-size:1.3rem;
+      margin-bottom:16px;
+    }
+
+    .exp-card p{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    /* CTA */
+
+    .cta{
+      background:
+              radial-gradient(circle at top right,#c084fc22,transparent 30%),
+              linear-gradient(180deg,#161622,#0f0f16);
+      border:1px solid var(--line);
+      border-radius:38px;
+      padding:80px;
+      text-align:center;
+    }
+
+    .cta h3{
+      font-size:3.3rem;
+      font-family:'Cormorant Garamond',serif;
+      margin-bottom:20px;
+    }
+
+    .cta p{
+      max-width:760px;
+      margin:auto;
+      line-height:1.9;
+      color:var(--muted);
+      margin-bottom:36px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:80px 0 50px;
+      border-top:1px solid var(--line);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:40px;
+    }
+
+    .footer-brand p{
+      color:var(--muted);
+      line-height:1.8;
+      margin-top:20px;
+      max-width:520px;
+    }
+
+    .footer-links h5{
+      margin-bottom:18px;
+      font-size:1rem;
+    }
+
+    .footer-links a{
+      display:block;
+      color:var(--muted);
+      margin-bottom:12px;
+      font-size:.95rem;
+    }
+
+    .legal{
+      margin-top:60px;
+      padding-top:30px;
+      border-top:1px solid var(--line);
+      color:#8f8fa7;
+      font-size:.88rem;
+      line-height:1.8;
+    }
+
+    /* =========================
+   MOBILE RESPONSIVE SYSTEM
+========================= */
+
+    @media(max-width:1000px){
+
+      section{
+        padding:80px 0;
+      }
+
+      .hero{
+        padding-top:120px;
+        min-height:auto;
+      }
+
+      .hero-grid,
+      .experience-grid,
+      .editions,
+      .footer-grid{
+        grid-template-columns:1fr;
+        gap:28px;
+      }
+
+      .hero-grid{
+        text-align:center;
+      }
+
+      h1{
+        font-size:3.4rem;
+        line-height:.95;
+      }
+
+      .hero p{
+        font-size:1rem;
+        line-height:1.8;
+        margin:auto;
+      }
+
+      .hero-actions{
+        justify-content:center;
+      }
+
+      .phone-wrap{
+        margin-top:20px;
+      }
+
+      .phone{
+        width:100%;
+        max-width:290px;
+        height:580px;
+      }
+
+      .screen{
+        padding:22px;
+      }
+
+      .screen h2{
+        font-size:2rem;
+      }
+
+      .lock{
+        width:70px;
+        height:70px;
+        font-size:1.7rem;
+      }
+
+      .section-title{
+        margin-bottom:50px;
+      }
+
+      .section-title h3{
+        font-size:2.5rem;
+      }
+
+      .section-title p{
+        font-size:.98rem;
+        line-height:1.8;
+      }
+
+      .edition-image{
+        height:220px;
+      }
+
+      .mockup{
+        inset:24px;
+        padding:20px;
+      }
+
+      .mockup h4{
+        font-size:1.5rem;
+      }
+
+      .edition-content{
+        padding:24px;
+      }
+
+      .edition-content h4{
+        font-size:1.35rem;
+      }
+
+      .exp-card{
+        padding:28px;
+      }
+
+      .cta{
+        padding:50px 24px;
+        border-radius:28px;
+      }
+
+      .cta h3{
+        font-size:2.3rem;
+        line-height:1;
+      }
+
+      .cta p{
+        font-size:.98rem;
+      }
+
+      .footer-grid{
+        gap:34px;
+      }
+
+      .legal{
+        margin-top:40px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .nav-wrap{
+        height:74px;
+      }
+
+      .logo{
+        font-size:1.2rem;
+      }
+
+      .nav-btn{
+        padding:11px 16px;
+        font-size:.82rem;
+        white-space:nowrap;
+      }
+
+    }
+
+
+    /* =========================
+       SMALL MOBILE DEVICES
+    ========================= */
+
+    @media(max-width:640px){
+
+      section{
+        padding:70px 0;
+      }
+
+      .container{
+        width:min(92%,100%);
+      }
+
+      h1{
+        font-size:2.8rem;
+      }
+
+      .hero{
+        padding-top:110px;
+      }
+
+      .eyebrow{
+        font-size:.72rem;
+        letter-spacing:1.5px;
+      }
+
+      .hero p{
+        font-size:.96rem;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      .btn{
+        width:100%;
+        max-width:320px;
+        text-align:center;
+        padding:15px 20px;
+      }
+
+      .phone{
+        max-width:260px;
+        height:520px;
+        border-radius:36px;
+      }
+
+      .screen{
+        border-radius:24px;
+      }
+
+      .screen h2{
+        font-size:1.7rem;
+      }
+
+      .gift-badge{
+        font-size:.7rem;
+      }
+
+      .section-title h3{
+        font-size:2rem;
+      }
+
+      .edition-card{
+        border-radius:22px;
+      }
+
+      .edition-image{
+        height:200px;
+      }
+
+      .mockup{
+        inset:18px;
+        padding:18px;
+      }
+
+      .mockup h4{
+        font-size:1.3rem;
+      }
+
+      .edition-content{
+        padding:20px;
+      }
+
+      .edition-content p{
+        font-size:.92rem;
+      }
+
+      .price{
+        font-size:1rem;
+      }
+
+      .exp-card{
+        padding:24px;
+        border-radius:22px;
+      }
+
+      .exp-icon{
+        width:58px;
+        height:58px;
+        font-size:1.3rem;
+        border-radius:16px;
+      }
+
+      .cta{
+        padding:42px 20px;
+      }
+
+      .cta h3{
+        font-size:2rem;
+      }
+
+      .footer-grid{
+        text-align:center;
+      }
+
+      .footer-brand p{
+        margin:auto;
+        margin-top:18px;
+      }
+
+      .footer-links a{
+        margin-bottom:10px;
+      }
+
+      .legal{
+        text-align:center;
+        font-size:.8rem;
+      }
+
+      .blur{
+        display:none;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="blur one"></div>
+<div class="blur two"></div>
+
+<nav>
+  <div class="container nav-wrap">
+
+    <div class="logo">
+      <span>Wiseverse</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#editions">Editions</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <a class="nav-btn" target="_blank"
+       href="https://wa.me/918605059204?text=Hi%20Wiseverse%2C%20I%20want%20to%20order%20a%20personalized%20digital%20gift.%20Please%20guide%20me%20through%20the%20available%20options.">
+      Order on WhatsApp
+    </a>
+
+  </div>
+</nav>
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Personalized Digital Gifting
+      </div>
+
+      <h1>
+        Gifts that feel<br>
+        unforgettable.
+      </h1>
+
+      <p>
+        Wiseverse creates deeply personalized digital gifting experiences —
+        immersive websites, QR gifts, premium gift boxes, and emotional storytelling designed for birthdays, anniversaries, friendships, long-distance relationships, and life's most meaningful moments.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="https://wa.me/918605059204?text=Hi%20Wiseverse%2C%20I%20want%20to%20order%20a%20personalized%20digital%20gift.%20Please%20guide%20me%20through%20the%20available%20options."
+           target="_blank"
+           class="btn btn-primary">
+          Order Your Gift
+        </a>
+
+        <a href="#editions"
+           class="btn btn-secondary">
+          Explore Editions
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="phone-wrap">
+
+      <div class="phone">
+
+        <div class="screen">
+
+          <div class="gift-badge">
+            Personalized Anniversary Gift
+          </div>
+
+          <h2>
+            You have a secret gift waiting.
+          </h2>
+
+          <p>
+            Ask your person for the password to unlock your experience.
+          </p>
+
+          <div class="lock">
+            ♡
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="editions">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h3>
+        Editions
+      </h3>
+
+      <p>
+        Wiseverse Editions are designed around emotional storytelling —
+        from instant digital experiences to premium physical gifting experiences integrated with immersive QR-powered websites.
+      </p>
+
+    </div>
+
+    <div class="editions">
+
+      <!-- T0 -->
+
+      <div class="edition-card">
+
+        <div class="edition-image">
+
+          <div class="mockup">
+            <h4>Love Letter Experience</h4>
+            <p>
+              Animated digital gift website with private password reveal, photos, countdowns, and personalized storytelling.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="edition-content">
+
+          <div class="tag">
+            LIVE NOW
+          </div>
+
+          <h4>T0 — Digital Edition</h4>
+
+          <p>
+            Instant personalized digital gifting experience delivered directly through WhatsApp or email within 24 hours.
+          </p>
+
+          <div class="price">
+            ₹149 — ₹249
+          </div>
+
+          <a class="btn btn-primary"
+             target="_blank"
+             href="https://wa.me/918605059204?text=Hi%20Wiseverse%2C%20I%20would%20like%20to%20order%20the%20T0%20Digital%20Edition.%20Can%20you%20share%20available%20templates%20and%20customization%20details%3F">
+            Order Now
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- T1 -->
+
+      <div class="edition-card">
+
+        <div class="edition-image">
+
+          <div class="mockup">
+            <h4>QR Card Pack</h4>
+            <p>
+              Elegant QR insert cards with personalized digital reveal experience.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="edition-content">
+
+          <div class="tag">
+            AMAZON RELEASE SOON
+          </div>
+
+          <h4>T1 — QR Card Pack</h4>
+
+          <p>
+            Minimal premium packaging experience combining physical gifting with interactive personalized digital storytelling.
+          </p>
+
+          <div class="price coming">
+            Coming Soon
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- T2 -->
+
+      <div class="edition-card">
+
+        <div class="edition-image">
+
+          <div class="mockup">
+            <h4>Premium Gift Box</h4>
+            <p>
+              Luxury rigid box with ribbon, QR reveal card, and immersive digital experience.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="edition-content">
+
+          <div class="tag">
+            AMAZON RELEASE SOON
+          </div>
+
+          <h4>T2 — Premium Box</h4>
+
+          <p>
+            Aesthetic premium gifting experience crafted for anniversaries, birthdays, and milestone moments.
+          </p>
+
+          <div class="price coming">
+            Coming Soon
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- T3 -->
+
+      <div class="edition-card">
+
+        <div class="edition-image">
+
+          <div class="mockup">
+            <h4>Luxury Experience</h4>
+            <p>
+              Fully custom immersive experience with premium presentation and emotional storytelling.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="edition-content">
+
+          <div class="tag">
+            SIGNATURE COLLECTION
+          </div>
+
+          <h4>T3 — Luxury Experience</h4>
+
+          <p>
+            Bespoke premium gifting experience designed for unforgettable moments, proposals, weddings, and milestone celebrations.
+          </p>
+
+          <div class="price coming">
+            Coming Soon
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="experience">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h3>
+        Designed Around Emotion
+      </h3>
+
+      <p>
+        Every Wiseverse experience is crafted to feel deeply personal —
+        combining storytelling, animation, design, and digital interaction into memorable gifting experiences.
+      </p>
+
+    </div>
+
+    <div class="experience-grid">
+
+      <div class="exp-card">
+
+        <div class="exp-icon">
+          ✨
+        </div>
+
+        <h4>
+          Personalized Experiences
+        </h4>
+
+        <p>
+          Every order is customized with names, personal messages, passwords, photos, dates, and emotional storytelling tailored uniquely to your moment.
+        </p>
+
+      </div>
+
+      <div class="exp-card">
+
+        <div class="exp-icon">
+          📱
+        </div>
+
+        <h4>
+          Mobile-First Experiences
+        </h4>
+
+        <p>
+          Designed for modern mobile interactions with immersive animations, responsive layouts, and smooth reveal experiences.
+        </p>
+
+      </div>
+
+      <div class="exp-card">
+
+        <div class="exp-icon">
+          🎁
+        </div>
+
+        <h4>
+          Physical + Digital Gifting
+        </h4>
+
+        <p>
+          Wiseverse combines physical gifting with interactive digital storytelling experiences using QR technology and personalized websites.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <div class="cta">
+
+      <h3>
+        Start Your Personalized Gift
+      </h3>
+
+      <p>
+        T0 Digital Edition is now live and available for direct orders through WhatsApp.
+        Physical Editions T1, T2, and T3 are currently under development and will be launching soon on Amazon India.
+      </p>
+
+      <a class="btn btn-primary"
+         target="_blank"
+         href="https://wa.me/918605059204?text=Hi%20Wiseverse%2C%20I%20would%20like%20to%20know%20more%20about%20your%20personalized%20digital%20gifting%20services.">
+        Order on WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer id="contact">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <div class="logo">
+          <span>Wiseverse</span>
+        </div>
+
+        <p>
+          Wiseverse is a personalized digital gifting studio focused on emotional storytelling, immersive web experiences, QR gifting, and modern meaningful gifting experiences for India.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <h5>
+          Contact
+        </h5>
+
+        <a href="mailto:wiseversemediahq@gmail.com">
+          wiseversemediahq@gmail.com
+        </a>
+
+        <a href="https://wa.me/918605059204?text=Hi%20Wiseverse%2C%20I%20would%20like%20to%20know%20more%20about%20your%20personalized%20digital%20gifting%20services."
+           target="_blank">
+          WhatsApp Orders
+        </a>
+
+      </div>
+
+      <div class="footer-links">
+
+        <h5>
+          Socials
+        </h5>
+
+        <a href="https://www.instagram.com/wiseverse_media" target="_blank">
+          Instagram
+        </a>
+
+        <a href="http://facebook.com/profile.php?id=100093079766577" target="_blank">
+          Facebook
+        </a>
+
+        <a href="https://www.youtube.com/@wiseverse_media" target="_blank">
+          YouTube
+        </a>
+
+        <a href="http://facebook.com/profile.php?id=100093079766577" target="_blank">
+          WhatsApp
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="legal">
+
+      <p>
+        Wiseverse <br>
+        1st Floor, H.NO.1863/2, Ahilya Nagari W.No.5,<br>
+        Lohara, Yavatmal, Maharashtra - 445001
+      </p>
+
+      <br>
+
+      <p>
+        All personalized content belongs to respective customers and recipients.
+        Wiseverse does not permanently store customer personalization data after fulfillment.
+      </p>
+
+      <br>
+
+      <p>
+        © 2026 Wiseverse. All rights reserved.
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
